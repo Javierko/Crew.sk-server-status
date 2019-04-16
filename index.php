@@ -2,6 +2,7 @@
     $serversIDs = array(
         '72852',
         '74167',
+        '748686',
         '73068'
     );
 ?>
@@ -31,14 +32,25 @@
                             $jsonUrl = file_get_contents('http://mcstatsdb.crew.sk/info.php?slave_id='.$server);
                             $json = json_decode($jsonUrl, true);
 
-                            echo "
-                                <tr>
-                                    <th scope='row'>{$server}</th>
-                                    <td>{$json['name']}</td>
-                                    <td>{$json['map']}</td>
-                                    <td>{$json['players']}/{$json['slots']}</td>
-                                </tr>
-                            ";
+                            if(!$json['ERROR'])
+                            {
+                                echo "
+                                    <tr>
+                                        <th scope='row'>{$server}</th>
+                                        <td>{$json['name']}</td>
+                                        <td>{$json['map']}</td>
+                                        <td>{$json['players']}/{$json['slots']}</td>
+                                    </tr>
+                                ";
+                            }
+                            else
+                            {
+                                echo "
+                                    <div class='alert alert-danger' role='alert'>
+                                        Chyba u serveru <strong>{$server}</strong>: <strong>{$json['ERROR']}</strong>
+                                    </div>
+                                ";
+                            }
                         }
                     ?>
                 </tbody>
