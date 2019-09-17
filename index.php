@@ -1,10 +1,10 @@
 <?php
-    $serversIDs = array(
+    $serversIDs = [
         '72852',
         '74167',
         '748686',
         '73068'
-    );
+    ];
 ?>
 
 <html>
@@ -27,13 +27,11 @@
                 </thead>
                 <tbody>
                     <?php
-                        foreach($serversIDs as $server)
-                        {
+                        foreach($serversIDs as $server) {
                             $jsonUrl = file_get_contents('http://mcstatsdb.crew.sk/info.php?slave_id='.$server);
                             $json = json_decode($jsonUrl, true);
 
-                            if(!$json['ERROR'])
-                            {
+                            if(!$json['ERROR']) {
                                 echo "
                                     <tr>
                                         <th scope='row'>{$server}</th>
@@ -42,9 +40,7 @@
                                         <td>{$json['players']}/{$json['slots']}</td>
                                     </tr>
                                 ";
-                            }
-                            else
-                            {
+                            } else {
                                 echo "
                                     <div class='alert alert-danger' role='alert'>
                                         Chyba u serveru <strong>{$server}</strong>: <strong>{$json['ERROR']}</strong>
