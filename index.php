@@ -19,10 +19,10 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope='col'>#</th>
-                        <th scope='col'>Název</th>
-                        <th scope='col'>Mapa</th>
-                        <th scope='col'>Hráči</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Název</th>
+                        <th scope="col">Mapa</th>
+                        <th scope="col">Hráči</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,20 +32,20 @@
                             $json = json_decode($jsonUrl, true);
 
                             if(!$json['ERROR']) {
-                                echo "
+                                echo '
                                     <tr>
-                                        <th scope='row'>{$server}</th>
-                                        <td>{$json['name']}</td>
-                                        <td>{$json['map']}</td>
-                                        <td>{$json['players']}/{$json['slots']}</td>
+                                        <th scope="row">'.$server.'</th>
+                                        <td>'.$json['name'].'</td>
+                                        <td>'.$json['map'].'</td>
+                                        <td>'.$json['players'].'/'.$json['slots'].'</td>
                                     </tr>
-                                ";
+                                ';
                             } else {
-                                echo "
-                                    <div class='alert alert-danger' role='alert'>
-                                        Chyba u serveru <strong>{$server}</strong>: <strong>{$json['ERROR']}</strong>
+                                echo '
+                                    <div class="alert alert-danger" role="alert">
+                                        Chyba u serveru <strong>'.$server.'</strong>: <strong>'.$json['ERROR'].'</strong>
                                     </div>
-                                ";
+                                ';
                             }
                         }
                     ?>
